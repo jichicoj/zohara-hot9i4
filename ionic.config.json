@@ -1,0 +1,8 @@
+{
+  "name": "Zohara",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "e937aa13"
+}
