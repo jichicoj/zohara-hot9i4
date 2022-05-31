@@ -1,4 +1,68 @@
-cdk-virtual-scroll-viewport {
-  height: 100%;
+ion-content {
+  --offset-top: 0px;
+  position: absolute;
+}
+
+.rate {
+  font-size: 14px;
+  padding-top: 4px;
+
+  ion-icon {
+    color: gold;
+  }
+}
+
+.spotlight {
   width: 100%;
+  height: 50vh;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 20px;
+  position: relative;
+
+  .gradient {
+    background: linear-gradient(#ffffff00 40%, #000000c2, #000 95%);
+    width: 100%;
+    height: 100%;
+  }
+
+  .info {
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+
+    .title {
+      display: block;
+      font-size: 3vh;
+      font-weight: 800;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  img {
+    max-width: 50%;
+  }
+}
+
+ion-toolbar {
+  --background: linear-gradient(180deg, rgba(0, 0, 0, 0.8715861344537815) 0%, rgba(0, 0, 0, 0.8463760504201681) 57%, rgba(0, 0, 0, 0.6923144257703081) 80%, rgba(0, 0, 0, 0.5438550420168067) 89%, rgba(0, 0, 0, 0))
+}
+
+ion-slides {
+  margin-top: 4px;
+}
+
+.section-title {
+  font-weight: 600;
+  font-size: large;
+  color: #da9bde;
+}
+
+.poster-col {
+  height: 150px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
 }

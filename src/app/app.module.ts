@@ -11,11 +11,11 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthService} from './services/auth.service';
 import { HeaderDirective } from './directives/header.directive';
+import {SharedDirectivesModule} from "./directives/shared-directives.module";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderDirective
+    AppComponent
   ],
   entryComponents: [],
   imports: [
@@ -23,7 +23,8 @@ import { HeaderDirective } from './directives/header.directive';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    SharedDirectivesModule
   ],
   providers: [
     AuthGuard,
@@ -32,9 +33,6 @@ import { HeaderDirective } from './directives/header.directive';
   ],
   bootstrap: [
     AppComponent
-  ],
-  exports: [
-    HeaderDirective
   ]
 })
 export class AppModule {}

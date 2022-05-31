@@ -95,7 +95,10 @@
           <ion-grid>
             <ion-row>
               <ion-col size="12" class="poster-col">
-                <img [src]="movie.poster" alt="">
+                <img *ngIf="movie.poster; else movieDefaultIcon" [src]="movie.poster" alt="">
+                <ng-template #movieDefaultIcon>
+                  <ion-icon style="font-size: 50vh;" name="videocam" color="primary"></ion-icon>
+                </ng-template>
               </ion-col>
               <ion-col size="12">
                 <h5 class="ion-no-margin">{{movie.title}}</h5>

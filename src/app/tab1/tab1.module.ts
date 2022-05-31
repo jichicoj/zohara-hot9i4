@@ -7,6 +7,8 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {HeaderDirective} from "../directives/header.directive";
+import {SharedDirectivesModule} from "../directives/shared-directives.module";
 
 @NgModule({
   imports: [
@@ -15,7 +17,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    ScrollingModule
+    ScrollingModule,
+    SharedDirectivesModule
   ],
   declarations: [Tab1Page]
 })

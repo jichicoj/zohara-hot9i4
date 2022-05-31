@@ -8,6 +8,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import {HeaderDirective} from "../directives/header.directive";
+import {SharedDirectivesModule} from "../directives/shared-directives.module";
 
 @NgModule({
   imports: [
@@ -16,8 +17,9 @@ import {HeaderDirective} from "../directives/header.directive";
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedDirectivesModule
   ],
-  declarations: [Tab2Page, HeaderDirective]
+  declarations: [Tab2Page]
 })
 export class Tab2PageModule {}

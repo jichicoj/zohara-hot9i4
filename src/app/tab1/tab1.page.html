@@ -1,23 +1,77 @@
-<ion-header [translucent]="true">
-  <ion-row class="ion-align-items-center">
-    <ion-col size="9">
-      <ion-searchbar placeholder="Enter name" [(ngModel)]="sct"></ion-searchbar>
-    </ion-col>
-    <ion-col size="3">
-      <ion-button (click)="scrollToMovie()" [disabled]="sct.length === 0">Search</ion-button>
-    </ion-col>
-  </ion-row>
+<ion-header #header class="ion-no-border">
+  <ion-toolbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" [scrollY]="false">
-  <cdk-virtual-scroll-viewport itemSize="56" minBufferPx="900" maxBufferPx="1350">
-    <ion-list *cdkVirtualFor="let movie of movies">
-      <ion-item (click)="goToMovie(movie.tmdbId)" routerLink="/movie">
-        <ion-avatar slot="start">
-          <img [src]="movie.poster">
-        </ion-avatar>
-        <ion-label class="ion-text-wrap">{{movie.title}}</ion-label>
-      </ion-item>
-    </ion-list>
-  </cdk-virtual-scroll-viewport>
+<ion-content [fullscreen]="true" scroll-events="true" [appHeader]="header">
+  <div class="spotlight" [style.background-image]="'url('+ movie.poster +')'">
+    <div class="gradient"></div>
+
+    <div class="info">
+      <span class="title">{{movie.title}}</span>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="2" class="ion-text-center"></ion-col>
+        <ion-col size="8" class="ion-text-center">
+          <ion-button expand="block" (click)="goToMovie(movie.tmdbId)">
+            <ion-icon slot="icon-only" name="filter"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="2" class="ion-text-center"></ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf="favorites.length > 0">
+      <ion-row>
+        <ion-col size="4">
+          <span class="section-title">Favorites</span>
+        </ion-col>
+        <ion-col size="8">
+          <div style="background-color: #da9bde; height: 1vh" ></div>
+        </ion-col>
+      </ion-row>
+      <ion-slides [options]="options">
+        <ion-slide *ngFor="let movie of favorites" (click)="goToMovie(movie.tmdbId)">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" class="poster-col" [style.background-image]="'url('+ movie.poster +')'">
+              </ion-col>
+              <ion-col size="12">
+                <h5 class="ion-no-margin">{{movie.title}}</h5>
+                <p class="ion-no-margin rate">
+                  <ion-icon name="star"></ion-icon> {{movie.imdbRating}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <div *ngFor="let genre of gnres">
+      <ion-row>
+        <ion-col size="4">
+          <span class="section-title">{{genre.name}}</span>
+        </ion-col>
+        <ion-col size="8">
+          <div style="background-color: #da9bde; height: 1vh" ></div>
+        </ion-col>
+      </ion-row>
+      <ion-slides [options]="options">
+        <ion-slide *ngFor="let movie of genre.movies" (click)="goToMovie(movie.tmdbId)">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" class="poster-col" [style.background-image]="'url('+ movie.poster +')'">
+              </ion-col>
+              <ion-col size="12">
+                <h5 class="ion-no-margin">{{movie.title}}</h5>
+                <p class="ion-no-margin rate">
+                  <ion-icon name="star"></ion-icon> {{movie.imdbRating}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </div>
 </ion-content>

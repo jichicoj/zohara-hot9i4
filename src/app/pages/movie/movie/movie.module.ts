@@ -8,14 +8,16 @@ import { MoviePageRoutingModule } from './movie-routing.module';
 
 import { MoviePage } from './movie.page';
 import {HeaderDirective} from "../../../directives/header.directive";
+import {SharedDirectivesModule} from "../../../directives/shared-directives.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MoviePageRoutingModule
+    MoviePageRoutingModule,
+    SharedDirectivesModule
   ],
-  declarations: [MoviePage, HeaderDirective]
+  declarations: [MoviePage]
 })
 export class MoviePageModule {}

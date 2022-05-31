@@ -16,7 +16,11 @@ export class UserService {
     this.thyHeaders = new HttpHeaders().set('Content-Type', 'application/json');
   }
 
-  getUser(id: string): Observable<any>{
+  getUser(id: string): Observable<any> {
     return this.http.get(this.url + 'user/getUser/' + id, { headers: this.thyHeaders });
+  }
+
+  getFavorites(id: string): Observable<any> {
+    return this.http.get(this.url + 'account/favorite/get/' + id, { headers: this.thyHeaders })
   }
 }
