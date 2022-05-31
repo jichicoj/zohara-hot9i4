@@ -23,6 +23,10 @@ const routes: Routes = [
   },  {
     path: 'movie',
     loadChildren: () => import('./pages/movie/movie/movie.module').then( m => m.MoviePageModule)
+  },
+  {
+    path: 'person',
+    loadChildren: () => import('./pages/person/person.module').then( m => m.PersonPageModule)
   }
 
 
