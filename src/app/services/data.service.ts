@@ -8,9 +8,11 @@ export class DataService {
 
   private movieId = new BehaviorSubject('')
   private userId = new BehaviorSubject('')
+  private personId = new BehaviorSubject('')
 
   sharedMovieId = this.movieId.asObservable()
   sharedUserId = this.userId.asObservable()
+  sharedPersonId = this.personId.asObservable()
 
   constructor() { }
 
@@ -20,5 +22,9 @@ export class DataService {
 
   nextUserId(userId) {
     this.userId.next(userId)
+  }
+
+  nextPersonId(personId) {
+    this.personId.next(personId)
   }
 }

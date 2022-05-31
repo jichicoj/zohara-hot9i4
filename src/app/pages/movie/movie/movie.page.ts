@@ -3,7 +3,6 @@ import {DataService} from "../../../services/data.service";
 import {MovieService} from "../../../services/movie.service";
 import {Movie} from "../../../models/movie";
 import {AlertService} from "../../../services/alert.service";
-import {HeaderDirective} from "../../../directives/header.directive";
 
 @Component({
   selector: 'app-movie',
@@ -52,7 +51,7 @@ export class MoviePage implements OnInit {
       }, error => {
         console.log(error)
         this.alertService.showAlert('¡Oh, no!', 'Se ha producido un error',
-          error.error, ['Entendido']);
+          error.message, ['Entendido']);
       })
   }
 
@@ -70,7 +69,7 @@ export class MoviePage implements OnInit {
       }, error => {
         console.log(error)
         this.alertService.showAlert('¡Oh, no!', 'Se ha producido un error',
-          error.error, ['Entendido']);
+          error.message, ['Entendido']);
       })
   }
 
@@ -95,5 +94,4 @@ export class MoviePage implements OnInit {
       })
     }
   }
-
 }
