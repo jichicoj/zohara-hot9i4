@@ -1,17 +1,23 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
+  <ion-row class="ion-align-items-center">
+    <ion-col size="9">
+      <ion-searchbar placeholder="Enter name" [(ngModel)]="sct"></ion-searchbar>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button (click)="scrollToMovie()" [disabled]="sct.length === 0">Search</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content [fullscreen]="true" [scrollY]="false">
+  <cdk-virtual-scroll-viewport itemSize="56" minBufferPx="900" maxBufferPx="1350">
+    <ion-list *cdkVirtualFor="let movie of movies">
+      <ion-item (click)="goToMovie(movie.tmdbId)" routerLink="/movie">
+        <ion-avatar slot="start">
+          <img [src]="movie.poster">
+        </ion-avatar>
+        <ion-label class="ion-text-wrap">{{movie.title}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </cdk-virtual-scroll-viewport>
 </ion-content>

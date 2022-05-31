@@ -1,0 +1,62 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="ion-no-border">
+    <div class="back-circle"></div>
+    <ion-title class="ion-text-center custom-font">Registrarse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <svg class="back-blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#4d71d7" d="M68.6,-33.5C81.6,-17.2,79.6,13.8,65.7,37.6C51.8,61.3,25.9,77.8,2.1,76.6C-21.7,75.4,-43.5,56.5,-54.2,34.6C-65,12.7,-64.8,-12.3,-53.9,-27.4C-43,-42.4,-21.5,-47.6,3.2,-49.4C27.9,-51.2,55.7,-49.7,68.6,-33.5Z" transform="translate(100 100)" />
+  </svg>
+  <form [formGroup]="signUpForm" (ngSubmit)="signUP()" style="padding: 1em">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessages.name">
+      <ion-label class="errorLabel" position="stacked" color="danger" *ngIf="signUpForm.controls.name.hasError(validation.type) && (signUpForm.controls.name.dirty || signUpForm.controls.name.touched)">
+        {{ validation.message }}
+      </ion-label>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Correo Electronico</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessages.email">
+      <ion-label class="errorLabel" position="stacked" color="danger" *ngIf="signUpForm.controls.email.hasError(validation.type) && (signUpForm.controls.email.dirty || signUpForm.controls.email.touched)">
+        {{ validation.message }}
+      </ion-label>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessages.password">
+      <ion-label class="errorLabel" position="stacked" color="danger" *ngIf="signUpForm.controls.password.hasError(validation.type) && (signUpForm.controls.password.dirty || signUpForm.controls.password.touched)">
+        {{ validation.message }}
+      </ion-label>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Confirmar contraseña</ion-label>
+      <ion-input formControlName="confirmPassword" type="password"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validationMessages.confirmPassword">
+      <ion-label class="errorLabel" position="stacked" color="danger" *ngIf="signUpForm.controls.confirmPassword.hasError(validation.type) && (signUpForm.controls.confirmPassword.dirty || signUpForm.controls.confirmPassword.touched)">
+        {{ validation.message }}
+      </ion-label>
+    </div>
+    <ion-label class="errorLabel" position="stacked" color="danger" *ngIf="signUpForm.errors?.equals && (signUpForm.controls.confirmPassword.dirty || signUpForm.controls.confirmPassword.touched)">
+      Las contraseñas no coinciden.
+    </ion-label>
+    <div style="text-align: center; padding: 3em">
+      <ion-button type="submit" expand="block" [disabled]="!signUpForm.valid">Registrarse</ion-button>
+    </div>
+  </form>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <p class="ion-text-center">¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+  </ion-toolbar>
+</ion-footer>

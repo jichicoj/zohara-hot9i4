@@ -1,0 +1,47 @@
+.poster-col {
+  height: 300px;
+  img {
+    border-radius: 40px;
+  }
+}
+
+.rate {
+  font-size: 14px;
+  padding-top: 4px;
+
+  ion-icon {
+    color: gold;
+  }
+}
+
+h5 {
+  margin-top: 4px;
+}
+
+.swiper-slide-prev {
+  opacity: .5;
+  transform: rotate(-8deg);
+}
+
+.swiper-slide-next {
+  opacity: .5;
+  transform: rotate(-8deg);
+}
+
+.swiper-slide {
+  transition: .4s all;
+}
+
+.gradient {
+  background: linear-gradient(#ffffff00 40%, #000000c2, #000 95%);
+  width: 100%;
+  height: 100%;
+}
+
+.spotlight {
+  width: 100%;
+  height: 50vh;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 20px;
+}

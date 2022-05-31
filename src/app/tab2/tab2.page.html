@@ -1,17 +1,55 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+<ion-header #header [translucent]="true">
+  <ion-header [translucent]="true">
+    <ion-searchbar [formControl]="searchField" debounce="100"></ion-searchbar>
+  </ion-header>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" scroll-events="true" [appHeader]="header">
+  <div *ngIf="movies.length > 0" style="margin: 5px">
+    <span class="section-title">Películas</span>
+    <ion-slides [options]="options">
+      <ion-slide *ngFor="let movie of movies" (click)="goToMovie(movie.tmdbId)">
+        <ion-grid>
+          <ion-row class="ion-no-padding">
+            <ion-col size="12" class="poster-col ion-no-padding">
+              <img *ngIf="movie.poster; else movieDefaultIcon" [src]="movie.poster" alt="">
+              <ng-template #movieDefaultIcon>
+                <ion-icon style="font-size: 50vh;" name="videocam" color="primary"></ion-icon>
+              </ng-template>
+            </ion-col>
+            <ion-col size="12" class="ion-no-padding">
+              <h5 class="ion-no-margin">{{movie.title}}</h5>
+              <p class="ion-no-margin rate">
+                <ion-icon name="star"></ion-icon> {{movie.imdbRating}}
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-slide>
+    </ion-slides>
+  </div>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <div *ngIf="people.length > 0" style="margin: 1.5%">
+    <span class="section-title">Personas</span>
+    <ion-slides [options]="options">
+      <ion-slide *ngFor="let person of people">
+        <ion-grid>
+          <ion-row class="ion-no-padding">
+            <ion-col size="12" class="poster-col ion-no-padding">
+              <img *ngIf="person.poster; else personDefaulIcon" [src]="person.poster" alt="">
+              <ng-template #personDefaulIcon>
+                <ion-icon style="font-size: 50vh;" name="person-circle-outline" color="primary"></ion-icon>
+              </ng-template>
+            </ion-col>
+            <ion-col size="12" class="ion-no-padding">
+              <h5 class="ion-no-margin">{{person.name}}</h5>
+              <p class="ion-no-margin rate">
+                <ion-icon name="star"></ion-icon> {{person.imdbRating}}
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>
