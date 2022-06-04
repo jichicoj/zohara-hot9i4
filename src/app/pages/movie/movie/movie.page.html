@@ -26,16 +26,27 @@
         <div>
           <ion-toolbar>
             <div class="ion-margin-bottom">
-              <ion-chip color="dark" outline>ReleaseDate: {{movie.released}}</ion-chip>
-              <ion-chip color="dark" outline>Duration: {{movie.runtime}}</ion-chip>
-              <ion-chip color="dark" outline>{{movie.imdbRating}}</ion-chip>
+              <ion-chip color="primary" outline>
+                <ion-icon name="calendar"></ion-icon>
+                <ion-label>ReleaseDate: {{movie.released}}</ion-label>
+              </ion-chip>
+              <ion-chip color="secondary" outline>
+                <ion-icon name="hourglass"></ion-icon>
+                <ion-label>Duration: {{movie.runtime}} min</ion-label>
+              </ion-chip>
+              <ion-chip color="warning" outline class="rate">
+                <ion-icon name="star"></ion-icon>
+                <ion-label>{{movie.imdbRating}}</ion-label>
+              </ion-chip>
             </div>
           </ion-toolbar>
         </div>
         <div>
           <ion-toolbar>
             <div class="ion-margin-bottom">
-              <ion-chip color="dark" outline *ngFor="let genre of movie.genres">{{genre.name}}</ion-chip>
+              <ion-chip color="success" outline *ngFor="let genre of movie.genres">
+                <ion-label>{{genre.name}}</ion-label>
+              </ion-chip>
             </div>
           </ion-toolbar>
         </div>
@@ -51,7 +62,7 @@
           <h3>Casting</h3>
         </ion-list-header>
 
-        <ion-item *ngFor="let actor of movie.actors">
+        <ion-item *ngFor="let actor of movie.actors" (click)="goToPerson(actor.tmdbId)">
           <ion-avatar slot="start">
             <img *ngIf="actor.poster; else personDefaulIcon" src="{{actor.poster}}">
             <ng-template #personDefaulIcon>
@@ -72,7 +83,7 @@
           <h3>Directores</h3>
         </ion-list-header>
 
-        <ion-item *ngFor="let director of movie.directors">
+        <ion-item *ngFor="let director of movie.directors" (click)="goToPerson(director.tmdbId)">
           <ion-avatar slot="start">
             <img *ngIf="director.poster; else personDefaulIcon" src="{{director.poster}}">
             <ng-template #personDefaulIcon>
@@ -91,7 +102,7 @@
         <ion-title>Recomendaciones</ion-title>
       </ion-toolbar>
       <ion-slides [options]="options">
-        <ion-slide *ngFor="let movie of similarMovies">
+        <ion-slide *ngFor="let movie of similarMovies" (click)="goToSimilarMovie(movie.tmdbId)">
           <ion-grid>
             <ion-row>
               <ion-col size="12" class="poster-col">

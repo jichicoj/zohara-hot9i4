@@ -3,6 +3,7 @@ import {DataService} from '../../../services/data.service';
 import {MovieService} from '../../../services/movie.service';
 import {Movie} from '../../../models/movie';
 import {AlertService} from '../../../services/alert.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-movie',
@@ -22,11 +23,14 @@ export class MoviePage implements OnInit {
     loop: true,
     spaceBetween: 10
   };
+  colors = ['primary', 'secondary', 'tertiary', 'success', 'danger', 'warning']
+  i = 0
 
   constructor(
     private dataService: DataService,
     private movieService: MovieService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -93,5 +97,15 @@ export class MoviePage implements OnInit {
           error.error, ['Entendido']);
       });
     }
+  }
+
+  goToPerson(personId) {
+    this.dataService.nextPersonId(personId)
+    this.router.navigate([`../person/${personId}`])
+  }
+
+  goToSimilarMovie(movieId) {
+    this.dataService.nextMovieId(movieId)
+    this.router.navigate([`../movie/${movieId}`])
   }
 }

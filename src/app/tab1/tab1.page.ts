@@ -2,13 +2,14 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MovieService} from '../services/movie.service';
 import {Storage} from '@ionic/storage-angular';
 import jwt_decode from 'jwt-decode';
-import {Platform} from '@ionic/angular';
+import {ModalController, Platform, PopoverController} from '@ionic/angular';
 import {Movie} from '../models/movie';
 import {AlertService} from "../services/alert.service";
 import {DataService} from "../services/data.service";
 import {GenreService} from "../services/genre.service";
 import {Router} from "@angular/router";
 import {UserService} from "../services/user.service";
+import {LogoutPage} from "../pages/logout/logout.page";
 
 @Component({
   selector: 'app-tab1',
@@ -38,7 +39,8 @@ export class Tab1Page implements OnInit {
     private genreService: GenreService,
     private userService: UserService,
     private storage: Storage,
-    private router: Router
+    private router: Router,
+    private modalCtrl: ModalController
   ) { }
 
   async init() {
@@ -100,7 +102,15 @@ export class Tab1Page implements OnInit {
 
   goToMovie(movieId) {
     this.dataService.nextMovieId(movieId)
-    this.router.navigate(['/movie'])
+    this.router.navigate([`/movie/${movieId}`])
   }
 
+  async openLogOut() {
+    const modal = await this.modalCtrl.create({
+      component: LogoutPage,
+      cssClass: 'transparent-modal'
+    })
+
+    await modal.present()
+  }
 }

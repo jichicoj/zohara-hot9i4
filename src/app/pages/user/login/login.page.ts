@@ -53,6 +53,7 @@ export class LoginPage implements OnInit {
           message, ['Entendido']);
       },
       () => {
+        this.loginForm.reset()
         this.router.navigate(['/tabs']);
       }
     );

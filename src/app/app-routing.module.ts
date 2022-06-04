@@ -20,17 +20,15 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/user/login/login.module').then( m => m.LoginPageModule)
-  },  {
-    path: 'movie',
+  },
+  {
+    path: 'movie/:id',
     loadChildren: () => import('./pages/movie/movie/movie.module').then( m => m.MoviePageModule)
   },
   {
-    path: 'person',
+    path: 'person/:id',
     loadChildren: () => import('./pages/person/person.module').then( m => m.PersonPageModule)
-  }
-
-
-];
+  }];
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })

@@ -10,7 +10,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthService} from './services/auth.service';
-import { HeaderDirective } from './directives/header.directive';
 import {SharedDirectivesModule} from "./directives/shared-directives.module";
 
 @NgModule({

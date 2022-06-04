@@ -1,5 +1,7 @@
 /* eslint-disable */
 export class Person {
+  private _actedCount;
+  private _directedCount;
   private _bio;
   private _born;
   private _bornIn;
@@ -10,7 +12,9 @@ export class Person {
   private _url
   private _tmdbId;
 
-  constructor(bio, born, bornIn, died, imdbId, name, poster, tmdbId, url) {
+  constructor(actedCount, directedCount, bio, born, bornIn, died, imdbId, name, poster, tmdbId, url) {
+    this._actedCount = actedCount;
+    this._directedCount = directedCount;
     this._bio = bio;
     this._born = born;
     this._bornIn = bornIn;
@@ -18,9 +22,25 @@ export class Person {
     this._imdbId = imdbId;
     this._name = name;
     this._poster = poster;
-    this._tmdbId = tmdbId;
     this._url = url;
-    }
+    this._tmdbId = tmdbId;
+  }
+
+  get actedCount() {
+    return this._actedCount;
+  }
+
+  set actedCount(value) {
+    this._actedCount = value;
+  }
+
+  get directedCount() {
+    return this._directedCount;
+  }
+
+  set directedCount(value) {
+    this._directedCount = value;
+  }
 
   get bio() {
     return this._bio;

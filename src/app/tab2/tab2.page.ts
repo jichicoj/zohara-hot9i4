@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {MovieService} from '../services/movie.service';
 import {AlertService} from '../services/alert.service';
 import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {Movie} from '../models/movie';
 import {DataService} from '../services/data.service';
 import {Router} from '@angular/router';
 
@@ -39,7 +37,6 @@ export class Tab2Page implements OnInit {
           if (value.trim().length > 0) {
             this.movieService.findByName(value).subscribe(
               response => {
-                console.log(response);
                 this.movies = response.movies;
                 this.people = response.people;
               }, error => {
@@ -53,12 +50,12 @@ export class Tab2Page implements OnInit {
 
   goToMovie(movieId) {
     this.dataService.nextMovieId(movieId);
-    this.router.navigate(['/movie']);
+    this.router.navigate([`/movie/${movieId}`]);
   }
 
   goToActor(personId) {
     this.dataService.nextPersonId(personId);
-    this.router.navigate(['/person']);
+    this.router.navigate([`/person/${personId}`]);
   }
 
 }
