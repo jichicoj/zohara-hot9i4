@@ -32,7 +32,7 @@
   <div *ngIf="people.length > 0" style="margin: 1.5%">
     <span class="section-title">Personas</span>
     <ion-slides [options]="options">
-      <ion-slide *ngFor="let person of people">
+      <ion-slide *ngFor="let person of people" (click)="goToActor(person.tmdbId)">
         <ion-grid>
           <ion-row class="ion-no-padding">
             <ion-col size="12" class="poster-col ion-no-padding">

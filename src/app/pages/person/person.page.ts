@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DataService} from '../../services/data.service';
 import {PersonService} from '../../services/person.service';
 import {AlertService} from '../../services/alert.service';
-import {Movie} from "../../models/movie";
+import {Person} from '../../models/person';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class PersonPage implements OnInit {
 
   personId = '';
   userId = '';
-  // person = new Person;
+  person = new Person('', '', '', '', '', '', '', '', '');
   similarPeople = [];
   options = {
     slidesPreview: 2.4,
@@ -36,17 +36,15 @@ export class PersonPage implements OnInit {
       this.userId = uId;
     });
     this.getPeople();
-    //this.getSimilar();
+    this.getSimilarPeople();
   }
 
   async getPeople() {
     await this.personService.getPersonById(this.personId, this.userId).subscribe(
       mv => {
         console.log(mv);
-        /*this.movie = new Movie(mv.movie.actors, mv.movie.budget, mv.movie.genres, mv.movie.directors, mv.movie.countries,
-          mv.movie.favorite, mv.movie.imdbId, mv.movie.imdbRating, mv.movie.imdbVotes, mv.movie.languages,
-          mv.movie.movieId, mv.movie.plot, mv.movie.poster, mv.movie.released, mv.movie.revenue, mv.movie.runtime,
-          mv.movie.title, mv.movie.tmdbId, mv.movie.url, mv.movie.year);*/
+          this.person = new Person(mv.person.bio, mv.person.born, mv.person.bornIn, mv.person.died, mv.person.imdbId,
+          mv.person.name, mv.person.poster, mv.person.tmdbId, mv.person.url);
       }, error => {
         console.log(error);
         this.alertService.showAlert('¡Oh, no!', 'Se ha producido un error',
@@ -54,21 +52,20 @@ export class PersonPage implements OnInit {
       });
   }
 
-/*  async getSimilar() {
-    await this.movieService.getSimilarById(this.movieId, this.userId).subscribe(
+async getSimilarPeople() {
+    await this.personService.getPersonSimilarById(this.personId, this.userId).subscribe(
       mvs => {
-        this.similarMovies = mvs.map(movie => {
-          movie = new Movie(movie.actors, movie.budget, movie.genres, movie.directors, movie.countries, movie.favorite,
-            movie.imdbId, movie.imdbRating, movie.imdbVotes, movie.languages,movie.movieId, movie.plot, movie.poster,
-            movie.released, movie.revenue, movie.runtime, movie.title, movie.tmdbId, movie.url, movie.year);
+        this.similarPeople = mvs.map(person => {
+          person = new Person(person.bio, person.born, person.bornIn, person.died, person.imdbId,
+            person.name, person.poster, person.tmdbId, person.url);;
 
-          return movie;
+          return person;
         });
-        console.log(this.similarMovies);
+        console.log(this.similarPeople);
       }, error => {
         console.log(error);
         this.alertService.showAlert('¡Oh, no!', 'Se ha producido un error',
           error.message, ['Entendido']);
       });
-  }*/
+  }
 }

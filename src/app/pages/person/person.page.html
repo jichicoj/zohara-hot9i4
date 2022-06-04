@@ -1,9 +1,56 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>person</ion-title>
+<ion-header #header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title>{{person.name}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" scroll-events="true" [appHeader]="header">
+  <div class="spotlight bkimg" [style.background-image]="'url('+ person.poster +')'">
+    <div class="gradient"></div>
+    <div>
+      <div class="ion-margin-start">
+        <ion-toolbar>
+          <h3>{{person.name}}</h3>
+        </ion-toolbar>
+        <div>
+          <ion-toolbar>
+            <div class="ion-margin-bottom">
+              <ion-chip color="dark" outline>Birth: {{person.born.day.low}}/{{person.born.month.low}}/{{person.born.year.low}}</ion-chip>
+              <ion-chip color="dark" outline>Place of Birth: {{person.bornIn}}</ion-chip>
+              <ion-chip color="dark" outline> Death: {{person.died.day.low}}/{{person.died.month.low}}/{{person.died.year.low}}</ion-chip>
+            </div>
+          </ion-toolbar>
+        </div>
+        <ion-toolbar>
+          <ion-text>{{person.bio}}</ion-text>
+        </ion-toolbar>
+      </div>
+    </div>
 
+    <div>
+      <ion-toolbar>
+        <ion-title>Recomendaciones</ion-title>
+      </ion-toolbar>
+      <ion-slides [options]="options">
+        <ion-slide *ngFor="let person of similarPeople">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" class="poster-col">
+                <img *ngIf="person.poster; else personDefaulIcon" [src]="person.poster" alt="">
+                <ng-template #personDefaulIcon>
+                  <ion-icon style="font-size: 50vh;" name="person-circle-outline" color="primary"></ion-icon>
+                </ng-template>
+              </ion-col>
+              <ion-col size="12">
+                <h5 class="ion-no-margin">{{person.name}}</h5>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </div>
 </ion-content>

@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {MovieService} from "../services/movie.service";
-import {AlertService} from "../services/alert.service";
-import {FormControl} from "@angular/forms";
-import {Observable} from "rxjs";
-import {Movie} from "../models/movie";
-import {DataService} from "../services/data.service";
-import {Router} from "@angular/router";
+import {MovieService} from '../services/movie.service';
+import {AlertService} from '../services/alert.service';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {Movie} from '../models/movie';
+import {DataService} from '../services/data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -14,16 +14,16 @@ import {Router} from "@angular/router";
 })
 export class Tab2Page implements OnInit {
 
-  search = ''
-  movies = []
-  people = []
+  search = '';
+  movies = [];
+  people = [];
   options = {
     slidesPreview: 2.4,
     centeredSlides: true,
     freeMode: true,
     spaceBetween: 5
-  }
-  searchField: FormControl
+  };
+  searchField: FormControl;
 
   constructor(
     private movieService: MovieService,
@@ -39,21 +39,26 @@ export class Tab2Page implements OnInit {
           if (value.trim().length > 0) {
             this.movieService.findByName(value).subscribe(
               response => {
-                console.log(response)
-                this.movies = response.movies
-                this.people = response.people
+                console.log(response);
+                this.movies = response.movies;
+                this.people = response.people;
               }, error => {
-                console.log(error)
+                console.log(error);
                 this.alertService.showAlert('¡Oh, no!', 'Se ha producido un error',
                   error.message, ['Entendido']);
-              })
+              });
           }
-        })
+        });
     }
 
   goToMovie(movieId) {
-    this.dataService.nextMovieId(movieId)
-    this.router.navigate(['/movie'])
+    this.dataService.nextMovieId(movieId);
+    this.router.navigate(['/movie']);
+  }
+
+  goToActor(personId) {
+    this.dataService.nextPersonId(personId);
+    this.router.navigate(['/person']);
   }
 
 }

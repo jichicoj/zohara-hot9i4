@@ -16,11 +16,11 @@ export class PersonService {
   }
 
   getPersonById(personId: string, userId: string): Observable<any> {
-    return this.http.get(this.url + 'people/find/' + personId + '/' + userId, { headers: this.thyHeaders });
+    return this.http.get(this.url + 'people/find/' + personId, { headers: this.thyHeaders });
   }
 
   getPersonSimilarById(personId: string, userId: string): Observable<any> {
-    return this.http.get(this.url + 'people/similar/' + personId + '/' + userId, { headers: this.thyHeaders });
+    return this.http.get(this.url + 'people/similar/' + personId, { headers: this.thyHeaders });
   }
 
   findPersonByName(name: string): Observable<any> {
